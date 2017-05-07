@@ -1,0 +1,30 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.row > * {
+  flex-basis: 0;
+}
+
+.row > label {
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.row > input {
+  flex-grow: 5;
+  text-align: left;
+}

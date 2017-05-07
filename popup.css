@@ -1,0 +1,8 @@
+.tag-row {
+  display: flex;
+}
+
+input.tag-col {
+  padding: 0;
+  width: 100px;
+}
