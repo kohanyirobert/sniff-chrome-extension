@@ -65,12 +65,13 @@ chrome.runtime.onInstalled.addListener(() => {
 })
 
 chrome.tabs.onActivated.addListener((activeInfo) => {
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    let url = new URL(tabs[0].url)
-    if (url.protocol === 'https:'
-        && url.host === 'www.youtube.com'
-        && url.pathname === '/watch'
-        && url.searchParams.has('v')) {
+  let queryInfo = {
+    active: true,
+    currentWindow: true,
+    url: 'https://www.youtube.com/watch?v=*'
+  }
+  chrome.tabs.query(queryInfo, (tabs) => {
+    if (tabs.length === 1) {
       chrome.contextMenus.create({
         id: ARTIST_ID,
         title: 'Artist',
@@ -82,8 +83,7 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
         contexts: ['selection'],
       })
     } else {
-      chrome.contextMenus.removeAll(() => {
-      })
+      chrome.contextMenus.removeAll()
     }
   })
 })

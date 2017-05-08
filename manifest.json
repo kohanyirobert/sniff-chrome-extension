@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "sniff-chrome-extension",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "background": {
     "scripts": [
       "shared.js",
@@ -15,10 +15,10 @@
   },
   "permissions": [
     "declarativeContent",
-    "tabs",
     "activeTab",
     "contextMenus",
-    "storage"
+    "storage",
+    "https://www.youtube.com/watch?v=*"
   ],
   "optional_permissions": [
     "https://*.amazonaws.com/*"
