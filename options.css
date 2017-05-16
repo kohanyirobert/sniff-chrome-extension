@@ -7,6 +7,11 @@ body {
   flex-direction: column;
 }
 
+#status {
+  white-space: nowrap;
+  margin-left: 5px;
+}
+
 .row {
   display: flex;
   flex-direction: row;

@@ -104,16 +104,22 @@ function setupTagsForm(url, context) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    let normalizedUrl = normalizeUrl(tabs[0].url)
+  checkNeedToShopOptions((needToShow) => {
+    if (needToShow) {
+      chrome.runtime.openOptionsPage()
+    } else {
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        let normalizedUrl = normalizeUrl(tabs[0].url)
 
-    chrome.tabs.executeScript(null, {file: 'script.js'}, (results) => {
-      let videoTitle = results[0]
-      let artistAndTitle = findArtistAndTitle(videoTitle)
-      chrome.storage.local.get(normalizedUrl, (items) => {
-        let context = items[normalizedUrl] || artistAndTitle || {}
-        setupTagsForm(normalizedUrl, context)
+        chrome.tabs.executeScript(null, {file: 'script.js'}, (results) => {
+          let videoTitle = results[0]
+          let artistAndTitle = findArtistAndTitle(videoTitle)
+          chrome.storage.local.get(normalizedUrl, (items) => {
+            let context = items[normalizedUrl] || artistAndTitle || {}
+            setupTagsForm(normalizedUrl, context)
+          })
+        })
       })
-    })
+    }
   })
 })

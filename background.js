@@ -58,6 +58,11 @@ let rule = {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
+  checkNeedToShopOptions((needToShow) => {
+    if (needToShow) {
+      chrome.runtime.openOptionsPage()
+    }
+  })
 
   chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
     chrome.declarativeContent.onPageChanged.addRules([rule])
@@ -101,7 +106,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 })
 
 chrome.extension.onMessage.addListener((request, sender, sendResponse) => {
-
   let keys = [
     OPTION_API_URL,
     OPTION_API_KEY,
