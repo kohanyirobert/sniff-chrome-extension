@@ -1,0 +1,7 @@
+= sniff-chrome-extension
+
+== Building
+
+* Use the supplied `package.{sh,cmd}` scripts.
+* Running the script in the current working directory creates a `crx` _one level above_.
+* It'll silently fail if the directory one level above contains a `.pem` certificate file, so delete it (or stash it) before running the script.
